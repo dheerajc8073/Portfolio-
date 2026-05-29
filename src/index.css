@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+:root {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Theme variables for Dark Mode (Default) */
+  --bg-color: #050505;
+  --bg-secondary: #0d0d0d;
+  --text-main: #ffffff;
+  --text-muted: #a1a1aa;
+  --border-color: rgba(255, 255, 255, 0.05);
+  --border-strong: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(13, 13, 13, 0.6);
+  --card-hover-border: rgba(124, 58, 237, 0.25);
+  --scrollbar-track: #050505;
+  --scrollbar-thumb: #1c1c1e;
+  --scrollbar-thumb-hover: #2c2c2e;
+}
+
+:root.light {
+  /* Theme variables for Light Mode */
+  --bg-color: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --border-color: rgba(15, 23, 42, 0.08);
+  --border-strong: rgba(15, 23, 42, 0.15);
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --card-hover-border: rgba(124, 58, 237, 0.45);
+  --scrollbar-track: #f1f5f9;
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
+}
+
+@theme {
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+  
+  --color-dark-bg: var(--bg-color);
+  --color-dark-secondary: var(--bg-secondary);
+  --color-brand-violet: #7c3aed;
+  --color-brand-cyan: #06b6d4;
+}
+
+/* Custom glassmorphism and motion utility classes */
+@utility interactive-card {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(14px) saturate(150%);
+}
+
+@utility blend-difference {
+  mix-blend-mode: difference;
+}
+
+@utility z-index-top-most {
+  z-index: 9999;
+}
+
+/* Document & Interactive viewport overrides */
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-color);
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--bg-color);
+}
+
+/* Custom smooth theme-aware scrollbar design */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Base smooth transition engine for layout elements while preserving mechanical transitions */
+html, body, #app-root-container, #main-glass-navbar, #desktop-nav-menu, footer, .interactive-card, input, textarea, button {
+  transition: background-color 350ms cubic-bezier(0.16, 1, 0.3, 1), border-color 350ms cubic-bezier(0.16, 1, 0.3, 1), color 350ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Global Light Theme Overrides and Mappings */
+.light {
+  color: var(--text-main);
+}
+
+.light h1,
+.light h2,
+.light h3,
+.light h4,
+.light h5,
+.light h6,
+.light .text-white {
+  color: var(--text-main) !important;
+}
+
+.light p,
+.light .text-zinc-400 {
+  color: var(--text-muted) !important;
+}
+
+.light .text-zinc-300,
+.light .text-zinc-200,
+.light .text-zinc-100 {
+  color: #334155 !important; /* Elegant slate-700 */
+}
+
+.light .text-zinc-500,
+.light .text-zinc-600 {
+  color: #64748b !important; /* Sleek slate-500 */
+}
+
+/* Overriding cards and details for Glassmorphism alignment */
+.light .interactive-card,
+.light .backdrop-blur-sm,
+.light .backdrop-blur-md,
+.light .bg-white\/5,
+.light .bg-zinc-900\/40,
+.light .bg-zinc-900\/30 {
+  background-color: var(--card-bg) !important;
+  backdrop-filter: blur(14px) saturate(160%) !important;
+  border-color: var(--border-color) !important;
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02) !important;
+}
+
+.light .interactive-card:hover {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border-color: var(--card-hover-border) !important;
+  box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Borders adjustments */
+.light .border-white\/5 {
+  border-color: var(--border-color) !important;
+}
+
+.light .border-white\/10 {
+  border-color: var(--border-strong) !important;
+}
+
+/* Specific component visual overrides */
+.light .bg-zinc-950 {
+  background-color: #f1f5f9 !important;
+  border-color: var(--border-color) !important;
+}
+
+.light input.bg-zinc-950,
+.light textarea.bg-zinc-950 {
+  background-color: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.1) !important;
+  color: #0f172a !important;
+}
+
+.light input.bg-zinc-950:focus,
+.light textarea.bg-zinc-950:focus {
+  border-color: #7c3aed !important;
+  box-shadow: 0 0 0 1px #7c3aed !important;
+}
+
+.light #mobile-navigation-overlay {
+  background-color: rgba(248, 250, 252, 0.98) !important;
+  border-color: var(--border-color) !important;
+}
+
+.light #mobile-navigation-overlay .text-zinc-300 {
+  color: #0f172a !important;
+}
+
+.light #mobile-navigation-overlay .text-zinc-300:hover {
+  color: #7c3aed !important;
+}
+
+.light #main-glass-navbar {
+  border-bottom-color: var(--border-color) !important;
+}
+
+.light #main-glass-navbar.bg-dark-bg\/70 {
+  background-color: rgba(248, 250, 252, 0.8) !important;
+  border-bottom-color: rgba(15, 23, 42, 0.06) !important;
+}
+
+.light #main-glass-navbar .bg-dark-bg {
+  background-color: #ffffff !important;
+}
+
+.light #desktop-nav-menu {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+  border-color: rgba(15, 23, 42, 0.06) !important;
+}
+
+.light #desktop-nav-menu button {
+  color: #475569 !important;
+}
+
+.light #desktop-nav-menu button.text-white {
+  color: #0d0d0d !important;
+}
+
+.light #desktop-nav-menu .bg-white\/10 {
+  background-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+.light #desktop-actions a,
+.light #mobile-menu-trigger {
+  color: #475569 !important;
+}
+
+.light #desktop-actions a:hover,
+.light #mobile-menu-trigger:hover {
+  color: #0f172a !important;
+}
+
+.light .bg-white\/5.rounded-full.p-2 {
+  background-color: rgba(15, 23, 42, 0.04) !important;
+}
